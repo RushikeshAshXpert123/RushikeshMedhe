@@ -18,28 +18,28 @@ const Resume = () => {
 
       {/* Resume Sections */}
       <main className="container mx-auto py-12 px-6 sm:px-8 lg:px-12 space-y-16">
-        <section className="transition-all duration-300 hover:scale-50">
+        <section className="transition-all duration-300">
           <ProfileSummary />
         </section>
-        <section className="transition-all duration-300 hover:scale-50">
+        <section className="transition-all duration-300">
           <WorkExperience />
         </section>
-        <section className="transition-all duration-300 hover:scale-50">
+        <section className="transition-all duration-300">
           <Projects />
         </section>
-        <section className="transition-all duration-300 hover:scale-50">
+        <section className="transition-all duration-300">
           <Education />
         </section>
-        <section className="transition-all duration-300 hover:scale-50">
+        <section className="transition-all duration-300">
           <Skills />
         </section>
-        <section className="transition-all duration-300 hover:scale-50">
+        <section className="transition-all duration-300">
           <Certification />
         </section>
-        <section className="transition-all duration-300 hover:scale-50">
+        <section className="transition-all duration-300">
           <Languages />
         </section>
-        <section className="transition-all duration-300 hover:scale-50">
+        <section className="transition-all duration-300">
           <Contact />
         </section>
       </main>
