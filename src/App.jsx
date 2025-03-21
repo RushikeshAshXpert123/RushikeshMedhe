@@ -6,7 +6,7 @@ const Resume = lazy(() => import('./components/resume.jsx')); // Lazy load Resum
 
 function App() {
   return (
-    <Router basename="/RushikeshMedhe">
+    <Router basename="/RushikeshMedhe/">
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Resume />} />
