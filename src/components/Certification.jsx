@@ -6,7 +6,7 @@ const Certification = () => {
   const educationDetails = [
     {
       institution: "VIP Institute",
-      date: "Sept 2022 - March 2022",
+      date: "Sept 2022 - March 2023",
       degree: "Python Full Stack Developer",
       details: [
         "Achieved an overall percentage of 95%.",
