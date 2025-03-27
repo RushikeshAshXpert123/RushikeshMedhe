@@ -13,6 +13,7 @@ function App() {
           <Route path="/" element={<Resume />} />
         </Routes>
       </Suspense>
+      <Analytics />
     </Router>
   );
 }
