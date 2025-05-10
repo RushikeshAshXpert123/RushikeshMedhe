@@ -58,7 +58,7 @@ const Footer = ({ darkMode = true }) => {
 
       {/* Main footer content */}
       <footer className="relative z-10 py-12 px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-full mx-auto">
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}

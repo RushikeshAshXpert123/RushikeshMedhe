@@ -147,7 +147,7 @@ const Header = () => {
       </div>
       
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-6xl mx-4">
+      <div className="relative z-10 w-full max-w-full mx-4">
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
