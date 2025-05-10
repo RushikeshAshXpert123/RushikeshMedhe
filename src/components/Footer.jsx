@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 import { Box, Chip, IconButton, Tooltip } from "@mui/material";
 import { Email, LinkedIn, GitHub, FileDownload, ArrowUpward } from "@mui/icons-material";
 
-const Footer = () => {
-  const [darkMode, setDarkMode] = React.useState(true);
+const Footer = ({ darkMode = true }) => {
   
   // Personal info (consistent with Header)
   const personalInfo = {
