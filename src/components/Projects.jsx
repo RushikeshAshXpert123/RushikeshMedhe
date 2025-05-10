@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Build, Link } from "@mui/icons-material";
+import { Build, Link, CalendarToday, Web, Code } from "@mui/icons-material";
 
-const Projects = () => {
+const Projects = ({ darkMode = true }) => {
+  const [expanded, setExpanded] = useState(false);
+  const toggleExpand = () => setExpanded(!expanded);
+
   const projects = [
+    {
+      company: "Pinaca Technologies",
+      date: "May 2024 - Present",
+      projectTitle:
+        "Maharashtra Advanced Research and Vigilance for Enforcement of Reformed Laws (MARVEL)",
+      role: "Full Stack Developer",
+      details: [
+        "Contributed to the development of the MARVEL project, focusing on creating an efficient and user-friendly interface.",
+        "Utilized SvelteKit and React.js for building dynamic and responsive frontend components.",
+        "Employed Bootstrap and TailwindCSS to design attractive, functional, and consistent UI layouts.",
+        "Ensured seamless user experience and optimized performance across different platforms.",
+      ],
+      tags: [
+        "SvelteKit",
+        "React.js",
+        "Bootstrap",
+        "TailwindCSS",
+        "UI/UX",
+        "Responsive Design",
+        "Flask",
+        "Python",
+        "MongoDB",
+        "PostgreSQL",
+      ],
+      color: "from-indigo-500 to-purple-400",
+    },
     {
       company: "AshXpert",
       link: "https://www.ashxpert.in/",
@@ -17,19 +46,8 @@ const Projects = () => {
         "Integrated MongoDB for seamless data management, ensuring flexibility and scalability.",
         "Delivered an exceptional user experience with a focus on performance and functionality.",
       ],
-    },
-    {
-      company: "Pinaca Technologies",
-      date: "May 2024 - March 2025",
-      projectTitle:
-        "MARVEL (Maharashtra Research and Vigilance for Law Enforcement)",
-      role: "Frontend Developer",
-      details: [
-        "Contributed to the development of the MARVEL project, focusing on creating an efficient and user-friendly interface.",
-        "Utilized SvelteKit and React.js for building dynamic and responsive frontend components.",
-        "Employed Bootstrap and TailwindCSS to design attractive, functional, and consistent UI layouts.",
-        "Ensured seamless user experience and optimized performance across different platforms.",
-      ],
+      tags: ["SvelteKit", "Flask", "Python", "MongoDB", "Responsive Design"],
+      color: "from-blue-400 to-cyan-300",
     },
     {
       company: "Pinaca Technologies",
@@ -42,83 +60,222 @@ const Projects = () => {
         "Built the frontend with SvelteKit and Bootstrap, ensuring a responsive and visually appealing user interface.",
         "Integrated backend and frontend seamlessly to provide a smooth and functional user experience.",
       ],
+      tags: [
+        "Python",
+        "Flask",
+        "MongoDB",
+        "SvelteKit",
+        "Bootstrap",
+        "API Development",
+      ],
+      color: "from-amber-500 to-yellow-400",
     },
   ];
-  const sections = [
-    {
-      id: "projects",
-      title: "Projects",
-      icon: <Build className="text-white" />,
-      content: (
-        <div>
-          {projects.map((proj, index) => (
-            <div key={index} className="mb-8">
-              {/* Top row: Company, Date */}
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
-                <h3 className="text-lg font-semibold text-gray-100 flex gap-2">
-                  {proj.company}
-                  {proj.company === "AshXpert" && proj.link && (
-                      <a
-                        href={proj.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="View Project"
-                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
-                      >
-                        <Link />
-                      </a>
-                  )}
-                </h3>
-                <div className="flex flex-col sm:flex-row sm:gap-4 text-sm text-gray-400 mt-1 sm:mt-0">
-                  <span>{proj.date}</span>
-                </div>
-              </div>
 
-              {/* Project Title & Role */}
-              <p className="mt-2 font-semibold text-gray-200">
-                {proj.projectTitle}
-              </p>
-              <p className="text-gray-400 italic mb-2">Role: {proj.role}</p>
-
-              {/* Details (bullet points) */}
-              <ul className="list-disc pl-6 text-gray-400 leading-relaxed">
-                {proj.details.map((point, i) => (
-                  <li key={i} className="mb-1">
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      ),
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
     },
-  ];
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+  };
+
+  const skillVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    show: {
+      opacity: 1,
+      scale: 1,
+      transition: { type: "spring", stiffness: 200, damping: 15 },
+    },
+  };
 
   return (
-    <div>
-      {sections.map((section, index) => (
-        <motion.section
-          key={section.id}
-          id={section.id}
-          className="my-12 p-8 bg-gray-700 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: index * 0.2 }}
-        >
-          <div className="flex items-center mb-6">
-            <div className="mr-4 p-3 bg-blue-500 rounded-full text-white shadow-md">
-              {section.icon}
-            </div>
-            <h2 className="sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-bold tracking-wide text-blue-300">
-              {section.title}
-            </h2>
+    <div className="w-full">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+        <div className="flex items-center gap-3">
+          <div
+            className={`p-2 rounded-lg ${
+              darkMode
+                ? "bg-gradient-to-br from-purple-600 to-blue-600"
+                : "bg-gradient-to-br from-purple-500 to-blue-500"
+            } shadow-lg`}
+          >
+            <Build className="text-white" />
           </div>
-          <div className="text-gray-200 text-lg">{section.content}</div>
-        </motion.section>
-      ))}
+          <h2
+            className={`text-2xl md:text-3xl font-bold ${
+              darkMode
+                ? "text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-blue-300"
+                : "text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-blue-700"
+            }`}
+          >
+            Projects
+          </h2>
+        </div>
+
+        <button
+          onClick={toggleExpand}
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
+            darkMode
+              ? "bg-gray-800 hover:bg-gray-700 text-gray-300"
+              : "bg-white hover:bg-gray-100 text-gray-700"
+          } transition-colors self-start md:self-center`}
+        >
+          <span>{expanded ? "Collapse" : "Expand"}</span>
+          {expanded ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          )}
+        </button>
+      </div>
+
+      {/* Content */}
+      {expanded && (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+          className="space-y-8"
+        >
+          <motion.div variants={itemVariants} className="space-y-4">
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className={`rounded-xl p-5 transition-all ${
+                  darkMode
+                    ? "bg-gray-800/50 border border-gray-700/50 hover:border-gray-600"
+                    : "bg-white/70 border border-gray-200 hover:border-gray-300"
+                } shadow-lg`}
+              >
+                {/* Project Header */}
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+                  <div className="flex items-center gap-2">
+                    <div
+                      className={`p-2 bg-gradient-to-r ${project.color} rounded-lg shadow-md`}
+                    >
+                      <Web className="text-white" fontSize="small" />
+                    </div>
+                    <h3
+                      className={`text-xl font-bold ${
+                        darkMode ? "text-gray-100" : "text-gray-800"
+                      }`}
+                    >
+                      {project.company}
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`text-blue-400 hover:text-blue-300 transition-colors`}
+                        >
+                          <Link fontSize="small" />
+                        </a>
+                      )}
+                    </h3>
+                  </div>
+                  <div
+                    className={`flex items-center gap-2 text-sm ${
+                      darkMode ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
+                    <CalendarToday fontSize="small" />
+                    <span>{project.date}</span>
+                  </div>
+                </div>
+
+                {/* Project Title & Role */}
+                <div className="mb-4">
+                  <h4
+                    className={`text-lg font-semibold ${
+                      darkMode ? "text-blue-300" : "text-blue-600"
+                    } mb-1`}
+                  >
+                    {project.projectTitle}
+                  </h4>
+                  <p
+                    className={`italic flex items-center gap-2 ${
+                      darkMode ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
+                    <Code fontSize="small" />
+                    <span>{project.role}</span>
+                  </p>
+                </div>
+
+                {/* Project Details */}
+                <ul
+                  className={`space-y-2 pl-5 mb-4 ${
+                    darkMode ? "text-gray-300" : "text-gray-700"
+                  }`}
+                >
+                  {project.details.map((detail, idx) => (
+                    <li key={idx} className="relative pl-2">
+                      <span className="absolute -left-5 top-2 w-3 h-3 bg-blue-400/30 rounded-full"></span>
+                      <span className="absolute -left-4 top-3 w-1 h-1 bg-blue-400 rounded-full"></span>
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Technologies Used */}
+                <div
+                  className={`flex flex-wrap gap-2 mt-4 pt-4 border-t ${
+                    darkMode ? "border-gray-700" : "border-gray-200"
+                  }`}
+                >
+                  {project.tags.map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className={`px-3 py-1 text-sm rounded-full transition-all ${
+                        darkMode
+                          ? "bg-blue-900/30 text-blue-300 border border-blue-700/30 hover:bg-blue-800/40"
+                          : "bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100"
+                      }`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 };
+
 export default Projects;
